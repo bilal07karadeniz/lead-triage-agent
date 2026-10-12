@@ -1,0 +1,20 @@
+{"lead_id": "L-001", "row_sha": "6cb8f3fb4bd0", "budget_parsed": 25000.0, "flags": [], "rule": "R17-qualify", "decision": "QUALIFY", "confidence": 0.85}
+{"lead_id": "L-002", "row_sha": "442108908294", "budget_parsed": 0.0, "flags": ["NON_BUYER"], "rule": "R6-non-buyer", "decision": "REJECT", "confidence": 0.85}
+{"lead_id": "L-003", "row_sha": "a3a0cf1731fe", "budget_parsed": 25000.0, "flags": ["DUPLICATE"], "rule": "R5-duplicate", "decision": "REJECT", "confidence": 0.9}
+{"lead_id": "L-004", "row_sha": "63ef886194f5", "budget_parsed": 12000.0, "flags": ["MISSING_EMAIL"], "rule": "R7-no-contact", "decision": "ESCALATE", "confidence": 0.7}
+{"lead_id": "L-005", "row_sha": "9b85c6850b06", "budget_parsed": null, "flags": ["BUDGET_NOT_NUMERIC"], "rule": "R12-budget-unclear", "decision": "NURTURE", "confidence": 0.6}
+{"lead_id": "L-006", "row_sha": "a5645f0b41ed", "budget_parsed": 500.0, "flags": ["INJECTION"], "rule": "R3-injection", "decision": "REJECT", "confidence": 0.9}
+{"lead_id": "L-007", "row_sha": "93384b9695e2", "budget_parsed": 50.0, "flags": ["SIZE_BUDGET_MISMATCH"], "rule": "R11-conflict", "decision": "ESCALATE", "confidence": 0.75}
+{"lead_id": "L-008", "row_sha": "f6c05f2bcf98", "budget_parsed": 40000.0, "flags": ["FREEMAIL", "UNVERIFIABLE_IDENTITY"], "rule": "R10-unverifiable", "decision": "ESCALATE", "confidence": 0.65}
+{"lead_id": "L-009", "row_sha": "e3436b330e1d", "budget_parsed": 18000.0, "flags": ["LANG_ES"], "rule": "R17-qualify", "decision": "QUALIFY", "confidence": 0.85}
+{"lead_id": "L-010", "row_sha": "cfa6dbf3af40", "budget_parsed": 999999.0, "flags": ["BUDGET_IMPLAUSIBLE", "JUNK"], "rule": "R4-junk", "decision": "REJECT", "confidence": 0.95}
+{"lead_id": "L-011", "row_sha": "cbc0d0ad1308", "budget_parsed": 30000.0, "flags": ["AGENCY_RESEARCH"], "rule": "R9-agency-research", "decision": "ESCALATE", "confidence": 0.6}
+{"lead_id": "L-012", "row_sha": "c8cdfff91d38", "budget_parsed": 9000.0, "flags": ["READER_DISAGREES", "TIMESTAMP_INVALID"], "rule": "R99-reader-ratchet", "decision": "ESCALATE", "confidence": 0.6}
+{"lead_id": "L-013", "row_sha": "c91c9aaaeccd", "budget_parsed": 20000.0, "flags": ["ASSET_REQUEST", "DISPOSABLE_EMAIL"], "rule": "R8-disposable", "decision": "ESCALATE", "confidence": 0.7}
+{"lead_id": "L-014", "row_sha": "7bf9ef55960f", "budget_parsed": 3000.0, "flags": [], "rule": "R16-below-threshold", "decision": "NURTURE", "confidence": 0.8}
+{"lead_id": "L-015", "row_sha": "fc566ddabdc2", "budget_parsed": 2500.0, "flags": ["REPEAT_CONTACT_CONFLICT"], "rule": "R14-repeat-conflict", "decision": "NURTURE", "confidence": 0.55}
+{"lead_id": "L-016", "row_sha": "aec871eb47df", "budget_parsed": 6000.0, "flags": ["HTML_NOISE"], "rule": "R17-qualify", "decision": "QUALIFY", "confidence": 0.85}
+{"lead_id": "L-017", "row_sha": "522992be8038", "budget_parsed": 15000.0, "flags": ["BUDGET_NORMALIZED", "REGULATED"], "rule": "R17-qualify", "decision": "QUALIFY", "confidence": 0.75}
+{"lead_id": "L-018", "row_sha": "ce6d19d352c5", "budget_parsed": 22000.0, "flags": [], "rule": "R15-no-need", "decision": "NURTURE", "confidence": 0.6}
+{"lead_id": "L-019", "row_sha": "02c3bb0bd2c1", "budget_parsed": 0.0, "flags": ["PRIVACY"], "rule": "R2-privacy", "decision": "ESCALATE", "confidence": 0.95}
+{"lead_id": "L-020", "row_sha": "37043a631273", "budget_parsed": 10000.0, "flags": ["EXEC_LINK", "PHISH_STRONG", "PHISH_TEXT"], "rule": "R1-security", "decision": "REJECT", "confidence": 0.95}

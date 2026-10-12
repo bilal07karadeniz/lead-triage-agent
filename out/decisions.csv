@@ -1,0 +1,21 @@
+lead_id,decision,reason,confidence,flags,rule,route_to,next_action,merge_into
+L-001,QUALIFY,"Clear need, budget at or above $5,000/month and a verifiable company.",0.85,,R17-qualify,sales-lead,Book a discovery call.,
+L-002,REJECT,"Sender is asking for mentoring/career help or a job, not buying services.",0.85,NON_BUYER,R6-non-buyer,,Optional polite template reply.,
+L-003,REJECT,"Same contact, site and budget as L-001; merge any new context into that record instead of working it twice.",0.9,DUPLICATE,R5-duplicate,sales-ops,Merge into L-001.,L-001
+L-004,ESCALATE,"Lead looks real but has no usable email, so a human must recover the contact from the source system.",0.7,MISSING_EMAIL,R7-no-contact,sdr,"Look up the contact in the source (e.g., event registrant list).",
+L-005,NURTURE,"Budget is non-numeric, so qualification is not possible yet; educate and ask for a range.",0.6,BUDGET_NOT_NUMERIC,R12-budget-unclear,,Send pricing-education sequence and ask for a monthly range.,
+L-006,REJECT,"Message contains embedded instructions aimed at the triage agent (quarantined and ignored) and the structured fields (budget, need) do not support a qualified lead.",0.9,INJECTION,R3-injection,,Flag the sender as a manipulation attempt; no automated reply.,
+L-007,ESCALATE,"Company size and stated budget conflict by orders of magnitude, so the budget field is probably wrong on a potentially large account.",0.75,SIZE_BUDGET_MISMATCH,R11-conflict,sales-lead,Confirm budget and scope with the contact.,
+L-008,ESCALATE,Large claims with urgency from a free-mail address with no company or site; identity must be verified before any pricing talk.,0.65,FREEMAIL;UNVERIFIABLE_IDENTITY,R10-unverifiable,sales-lead,Ask for company and verify on LinkedIn before replying with pricing.,
+L-009,QUALIFY,"Clear need, budget at or above $5,000/month and a verifiable company (non-English; route to a speaker).",0.85,LANG_ES,R17-qualify,sales-lead,Book a discovery call.,
+L-010,REJECT,Multiple test/keyboard-mash signals and an implausible budget indicate a junk submission.,0.95,BUDGET_IMPLAUSIBLE;JUNK,R4-junk,,,
+L-011,ESCALATE,Another agency asking how we structure retainers for a client: partner or competitive intel is a policy call.,0.6,AGENCY_RESEARCH,R9-agency-research,partnerships,Decide whether to engage as a partner; share nothing proprietary by default.,
+L-012,ESCALATE,Rules engine would qualify but the independent LLM reader said ESCALATE; a human adjudicates the disagreement.,0.6,READER_DISAGREES;TIMESTAMP_INVALID,R99-reader-ratchet,sales-lead,Read the reader trace in logs/ and decide.,
+L-013,ESCALATE,Disposable email plus a request for proprietary material up front; a human should verify before anything is sent.,0.7,ASSET_REQUEST;DISPOSABLE_EMAIL,R8-disposable,sales-lead,Verify identity; send no decks or client results automatically.,
+L-014,NURTURE,"Stated need is real but budget is below the $5,000/month qualification line; nurture toward a later start.",0.8,,R16-below-threshold,,Light-touch nurture; revisit when budget changes.,
+L-015,NURTURE,Same email as L-002 but a different profile and story; verify who this is before investing.,0.55,REPEAT_CONTACT_CONFLICT,R14-repeat-conflict,sdr,Verify identity on a short call.,L-002
+L-016,QUALIFY,"Clear need, budget at or above $5,000/month and a verifiable company.",0.85,HTML_NOISE,R17-qualify,sales-lead,Book a discovery call.,
+L-017,QUALIFY,"Clear need, budget at or above $5,000/month and a verifiable company.",0.75,BUDGET_NORMALIZED;REGULATED,R17-qualify,sales-lead,Book a discovery call.,
+L-018,NURTURE,Budget and company look fine but no need is stated; ask what they want before sales time is spent.,0.6,,R15-no-need,,Send a one-question discovery reply.,
+L-019,ESCALATE,Data-erasure request under privacy law with a legal response deadline; not a sales lead and not for automated reply.,0.95,PRIVACY,R2-privacy,privacy-legal,Verify requester identity and handle the erasure request within the statutory window.,
+L-020,REJECT,"Message pushes an urgent payment/credential action with an executable or login link, so it is a phishing/malware attempt, not a lead.",0.95,EXEC_LINK;PHISH_STRONG;PHISH_TEXT,R1-security,security,Do not click or reply; report to security and block the sender.,

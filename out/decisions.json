@@ -1,0 +1,263 @@
+[
+  {
+    "decision": "QUALIFY",
+    "rule": "R17-qualify",
+    "reason": "Clear need, budget at or above $5,000/month and a verifiable company.",
+    "confidence": 0.85,
+    "route_to": "sales-lead",
+    "next_action": "Book a discovery call.",
+    "lead_id": "L-001",
+    "flags": [],
+    "merge_into": ""
+  },
+  {
+    "decision": "REJECT",
+    "rule": "R6-non-buyer",
+    "reason": "Sender is asking for mentoring/career help or a job, not buying services.",
+    "confidence": 0.85,
+    "route_to": "",
+    "next_action": "Optional polite template reply.",
+    "lead_id": "L-002",
+    "flags": [
+      "NON_BUYER"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "REJECT",
+    "rule": "R5-duplicate",
+    "reason": "Same contact, site and budget as L-001; merge any new context into that record instead of working it twice.",
+    "confidence": 0.9,
+    "route_to": "sales-ops",
+    "next_action": "Merge into L-001.",
+    "lead_id": "L-003",
+    "flags": [
+      "DUPLICATE"
+    ],
+    "merge_into": "L-001"
+  },
+  {
+    "decision": "ESCALATE",
+    "rule": "R7-no-contact",
+    "reason": "Lead looks real but has no usable email, so a human must recover the contact from the source system.",
+    "confidence": 0.7,
+    "route_to": "sdr",
+    "next_action": "Look up the contact in the source (e.g., event registrant list).",
+    "lead_id": "L-004",
+    "flags": [
+      "MISSING_EMAIL"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "NURTURE",
+    "rule": "R12-budget-unclear",
+    "reason": "Budget is non-numeric, so qualification is not possible yet; educate and ask for a range.",
+    "confidence": 0.6,
+    "route_to": "",
+    "next_action": "Send pricing-education sequence and ask for a monthly range.",
+    "lead_id": "L-005",
+    "flags": [
+      "BUDGET_NOT_NUMERIC"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "REJECT",
+    "rule": "R3-injection",
+    "reason": "Message contains embedded instructions aimed at the triage agent (quarantined and ignored) and the structured fields (budget, need) do not support a qualified lead.",
+    "confidence": 0.9,
+    "route_to": "",
+    "next_action": "Flag the sender as a manipulation attempt; no automated reply.",
+    "lead_id": "L-006",
+    "flags": [
+      "INJECTION"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "ESCALATE",
+    "rule": "R11-conflict",
+    "reason": "Company size and stated budget conflict by orders of magnitude, so the budget field is probably wrong on a potentially large account.",
+    "confidence": 0.75,
+    "route_to": "sales-lead",
+    "next_action": "Confirm budget and scope with the contact.",
+    "lead_id": "L-007",
+    "flags": [
+      "SIZE_BUDGET_MISMATCH"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "ESCALATE",
+    "rule": "R10-unverifiable",
+    "reason": "Large claims with urgency from a free-mail address with no company or site; identity must be verified before any pricing talk.",
+    "confidence": 0.65,
+    "route_to": "sales-lead",
+    "next_action": "Ask for company and verify on LinkedIn before replying with pricing.",
+    "lead_id": "L-008",
+    "flags": [
+      "FREEMAIL",
+      "UNVERIFIABLE_IDENTITY"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "QUALIFY",
+    "rule": "R17-qualify",
+    "reason": "Clear need, budget at or above $5,000/month and a verifiable company (non-English; route to a speaker).",
+    "confidence": 0.85,
+    "route_to": "sales-lead",
+    "next_action": "Book a discovery call.",
+    "lead_id": "L-009",
+    "flags": [
+      "LANG_ES"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "REJECT",
+    "rule": "R4-junk",
+    "reason": "Multiple test/keyboard-mash signals and an implausible budget indicate a junk submission.",
+    "confidence": 0.95,
+    "route_to": "",
+    "next_action": "",
+    "lead_id": "L-010",
+    "flags": [
+      "BUDGET_IMPLAUSIBLE",
+      "JUNK"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "ESCALATE",
+    "rule": "R9-agency-research",
+    "reason": "Another agency asking how we structure retainers for a client: partner or competitive intel is a policy call.",
+    "confidence": 0.6,
+    "route_to": "partnerships",
+    "next_action": "Decide whether to engage as a partner; share nothing proprietary by default.",
+    "lead_id": "L-011",
+    "flags": [
+      "AGENCY_RESEARCH"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "ESCALATE",
+    "rule": "R99-reader-ratchet",
+    "reason": "Rules engine would qualify but the independent LLM reader said ESCALATE; a human adjudicates the disagreement.",
+    "confidence": 0.6,
+    "route_to": "sales-lead",
+    "next_action": "Read the reader trace in logs/ and decide.",
+    "lead_id": "L-012",
+    "flags": [
+      "READER_DISAGREES",
+      "TIMESTAMP_INVALID"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "ESCALATE",
+    "rule": "R8-disposable",
+    "reason": "Disposable email plus a request for proprietary material up front; a human should verify before anything is sent.",
+    "confidence": 0.7,
+    "route_to": "sales-lead",
+    "next_action": "Verify identity; send no decks or client results automatically.",
+    "lead_id": "L-013",
+    "flags": [
+      "ASSET_REQUEST",
+      "DISPOSABLE_EMAIL"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "NURTURE",
+    "rule": "R16-below-threshold",
+    "reason": "Stated need is real but budget is below the $5,000/month qualification line; nurture toward a later start.",
+    "confidence": 0.8,
+    "route_to": "",
+    "next_action": "Light-touch nurture; revisit when budget changes.",
+    "lead_id": "L-014",
+    "flags": [],
+    "merge_into": ""
+  },
+  {
+    "decision": "NURTURE",
+    "rule": "R14-repeat-conflict",
+    "reason": "Same email as L-002 but a different profile and story; verify who this is before investing.",
+    "confidence": 0.55,
+    "route_to": "sdr",
+    "next_action": "Verify identity on a short call.",
+    "lead_id": "L-015",
+    "flags": [
+      "REPEAT_CONTACT_CONFLICT"
+    ],
+    "merge_into": "L-002"
+  },
+  {
+    "decision": "QUALIFY",
+    "rule": "R17-qualify",
+    "reason": "Clear need, budget at or above $5,000/month and a verifiable company.",
+    "confidence": 0.85,
+    "route_to": "sales-lead",
+    "next_action": "Book a discovery call.",
+    "lead_id": "L-016",
+    "flags": [
+      "HTML_NOISE"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "QUALIFY",
+    "rule": "R17-qualify",
+    "reason": "Clear need, budget at or above $5,000/month and a verifiable company.",
+    "confidence": 0.75,
+    "route_to": "sales-lead",
+    "next_action": "Book a discovery call.",
+    "lead_id": "L-017",
+    "flags": [
+      "BUDGET_NORMALIZED",
+      "REGULATED"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "NURTURE",
+    "rule": "R15-no-need",
+    "reason": "Budget and company look fine but no need is stated; ask what they want before sales time is spent.",
+    "confidence": 0.6,
+    "route_to": "",
+    "next_action": "Send a one-question discovery reply.",
+    "lead_id": "L-018",
+    "flags": [],
+    "merge_into": ""
+  },
+  {
+    "decision": "ESCALATE",
+    "rule": "R2-privacy",
+    "reason": "Data-erasure request under privacy law with a legal response deadline; not a sales lead and not for automated reply.",
+    "confidence": 0.95,
+    "route_to": "privacy-legal",
+    "next_action": "Verify requester identity and handle the erasure request within the statutory window.",
+    "lead_id": "L-019",
+    "flags": [
+      "PRIVACY"
+    ],
+    "merge_into": ""
+  },
+  {
+    "decision": "REJECT",
+    "rule": "R1-security",
+    "reason": "Message pushes an urgent payment/credential action with an executable or login link, so it is a phishing/malware attempt, not a lead.",
+    "confidence": 0.95,
+    "route_to": "security",
+    "next_action": "Do not click or reply; report to security and block the sender.",
+    "lead_id": "L-020",
+    "flags": [
+      "EXEC_LINK",
+      "PHISH_STRONG",
+      "PHISH_TEXT"
+    ],
+    "merge_into": ""
+  }
+]
