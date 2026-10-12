@@ -1,0 +1,21 @@
+lead_id,decision,why
+L-001,QUALIFY,concrete paid+LP scope; 25k budget; 30-day start; real domain
+L-002,REJECT,student asking for mentoring; budget 0; not a buyer
+L-003,REJECT,duplicate of L-001 (same email/domain/budget); merge the SEO interest into L-001
+L-004,ESCALATE,good fit and budget but no email; human must recover contact from webinar registrant list
+L-005,NURTURE,real company; budget non-numeric ("we'll discuss"); asks to be educated
+L-006,REJECT,embedded instruction to force QUALIFY; budget 500 contradicts claim; evaluate on fields only
+L-007,ESCALATE,12000-employee company vs 50 USD budget; budget field almost certainly wrong; potentially large
+L-008,ESCALATE,anonymous freemail claiming Fortune 500 VP + urgency; unverifiable; human verifies before any pricing talk
+L-009,QUALIFY,Spanish-language lead; 18k budget; clear SEO scope; language is not a negative
+L-010,REJECT,keyboard-mash junk; absurd budget
+L-011,ESCALATE,agency collecting retainer structures for a client; competitor-intel vs partner is a policy call
+L-012,QUALIFY,invalid timestamp is metadata damage only; 9k budget and clear need; flag timestamp
+L-013,ESCALATE,disposable email + asks for full methodology deck and client results first; do not send IP automatically
+L-014,NURTURE,3k budget below threshold; stated fall raise and growth path
+L-015,NURTURE,same email as L-002 but a different story (family business); below threshold; verify identity on a call
+L-016,QUALIFY,HTML/emoji noise only; 6k budget; local service business with a clear goal
+L-017,QUALIFY,15k parsed from "15k"; clear demand-gen need; regulated vertical noted
+L-018,NURTURE,22k budget and real domain but no stated need; ask what they want
+L-019,ESCALATE,GDPR Art.17 erasure request; legal clock; not a sales lead; privacy owner
+L-020,REJECT,payment-pressure message with .exe link; malware/phishing; report to security and never click
