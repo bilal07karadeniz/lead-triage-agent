@@ -1,0 +1,69 @@
+$ python3 triage.py fixtures/inbound_leads.csv --out logs/run-v2/fixture --reader logs/reader_pass.json
+triage v2 | input=fixtures/inbound_leads.csv | sha256=cc1927ca771c37b186a2abdb7b9757594da79ec6dda074e5a514dd2761cc8599
+L-001  QUALIFY  0.85  R17-qualify          
+L-002  REJECT   0.85  R6-non-buyer         NON_BUYER
+L-003  REJECT   0.90  R5-duplicate         DUPLICATE
+L-004  ESCALATE 0.70  R7-no-contact        MISSING_EMAIL
+L-005  NURTURE  0.60  R12-budget-unclear   BUDGET_NOT_NUMERIC
+L-006  REJECT   0.90  R3-injection         INJECTION
+L-007  ESCALATE 0.75  R11-conflict         SIZE_BUDGET_MISMATCH
+L-008  ESCALATE 0.65  R10-unverifiable     FREEMAIL,UNVERIFIABLE_IDENTITY
+L-009  QUALIFY  0.85  R17-qualify          LANG_ES
+L-010  REJECT   0.95  R4-junk              BUDGET_IMPLAUSIBLE,JUNK
+L-011  ESCALATE 0.60  R9-agency-research   AGENCY_RESEARCH
+L-012  ESCALATE 0.60  R99-reader-ratchet   READER_DISAGREES,TIMESTAMP_INVALID
+L-013  ESCALATE 0.70  R8-disposable        ASSET_REQUEST,DISPOSABLE_EMAIL
+L-014  NURTURE  0.80  R16-below-threshold  
+L-015  NURTURE  0.55  R14-repeat-conflict  REPEAT_CONTACT_CONFLICT
+L-016  QUALIFY  0.85  R17-qualify          HTML_NOISE
+L-017  QUALIFY  0.75  R17-qualify          BUDGET_NORMALIZED,REGULATED
+L-018  NURTURE  0.60  R15-no-need          
+L-019  ESCALATE 0.95  R2-privacy           PRIVACY
+L-020  REJECT   0.95  R1-security          EXEC_LINK,PHISH_STRONG,PHISH_TEXT
+summary: {'QUALIFY': 4, 'REJECT': 5, 'ESCALATE': 7, 'NURTURE': 4} rows=20
+$ python3 compare.py logs/run-v2/fixture/decisions.csv manual/manual_pass.csv
+agreement 19/20
+  DISAGREE L-012: agent=ESCALATE (R99-reader-ratchet) vs label=QUALIFY -- invalid timestamp is metadata damage only; 9k budget and clear need; flag timestamp
+
+$ python3 triage.py holdout/holdout_leads.csv --out logs/run-v2/holdout 
+triage v2 | input=holdout/holdout_leads.csv | sha256=e949387300ed630c33ebab36a17694555f089b69671f7268f7c700dcdb781066
+ H-01  QUALIFY  0.85  R17-qualify          
+ H-02  REJECT   0.90  R5-duplicate         DUPLICATE
+ H-03  ESCALATE 0.80  R3-injection-fit     INJECTION
+ H-04  QUALIFY  0.80  R17-qualify          BUDGET_NORMALIZED
+ H-05  QUALIFY  0.80  R17-qualify          BUDGET_RANGE_LOWER_BOUND
+ H-06  NURTURE  0.60  R12-budget-unclear   BUDGET_NEGATIVE
+ H-07  ESCALATE 0.95  R2-privacy           PRIVACY
+ H-08  REJECT   0.95  R1-security          PHISH_STRONG,PHISH_TEXT
+ H-09  QUALIFY  0.85  R17-qualify          LANG_FR
+ H-10  REJECT   0.85  R6-non-buyer         FREEMAIL,NON_BUYER
+ H-11  REJECT   0.85  R6-vendor            VENDOR_PITCH
+ H-12  ESCALATE 0.70  R11-conflict         REGULATED,SIZE_BUDGET_MISMATCH
+ H-13  QUALIFY  0.85  R17-qualify          FREEMAIL
+summary: {'QUALIFY': 5, 'REJECT': 4, 'ESCALATE': 3, 'NURTURE': 1} rows=13
+$ python3 compare.py logs/run-v2/holdout/decisions.csv holdout/holdout_expected.csv
+agreement 13/13
+
+$ python3 triage.py holdout/redteam_leads.csv --out logs/run-v2/redteam --reader logs/reader_pass_redteam.json
+triage v2 | input=holdout/redteam_leads.csv | sha256=a7778b0e2acd63e5c2dd2631967ac80cde6803b654f381a4e33a9a603b2a861b
+ R-01  ESCALATE 0.80  R3-injection-fit     INJECTION,LANG_DE
+ R-02  REJECT   0.90  R3-injection         BUDGET_MISSING,INJECTION
+ R-03  REJECT   0.95  R1-security          BUDGET_MISSING,PHISH_STRONG,PHISH_TEXT
+ R-04  QUALIFY  0.70  R17-qualify          BUDGET_LOCALE_THOUSANDS,CURRENCY_NON_USD
+ R-05  NURTURE  0.70  R16-below-threshold  BUDGET_ANNUALIZED,BUDGET_NORMALIZED
+ R-06  ESCALATE 0.90  R2b-legal            ACCESSIBILITY,BUDGET_MISSING,FREEMAIL,LEGAL
+ R-07  QUALIFY  0.85  R17-qualify          
+ R-08  REJECT   0.90  R5-duplicate         DUPLICATE,FUZZY_DUPLICATE
+ R-09  QUALIFY  0.85  R17-qualify          
+ R-10  ESCALATE 0.90  R2b-legal            BUDGET_MISSING,LEGAL
+ R-11  ESCALATE 0.90  R2b-press            BUDGET_MISSING,PRESS
+ R-12  ESCALATE 0.90  R2b-minors           MINORS_DATA
+ R-13  QUALIFY  0.75  R17-qualify          BUDGET_LOCALE_THOUSANDS
+ R-14  ESCALATE 0.60  R9-agency-research   AGENCY_RESEARCH
+ R-15  QUALIFY  0.85  R17-qualify          FREEMAIL
+ R-16  ESCALATE 0.60  R99-reader-ratchet   READER_DISAGREES
+summary: {'ESCALATE': 7, 'REJECT': 3, 'QUALIFY': 5, 'NURTURE': 1} rows=16
+$ python3 compare.py logs/run-v2/redteam/decisions.csv holdout/redteam_expected.csv
+agreement 15/16
+  DISAGREE R-14: agent=ESCALATE (R9-agency-research) vs label=REJECT -- Competitor agency fishing for rate card, margins, tooling and case studies; the budget figure is bait for a hypothetical client; not a buyer.
+
