@@ -1,0 +1,4 @@
+a68a97c 2026-10-13 02:38:03 +0300 Engine v2 (red-team fixes, reader ratchet), tests, final run, write-up
+852238f 2026-10-13 02:34:47 +0300 v1 on independently written red-team set: 5/16. Keep as evidence of real bad outputs before fixing
+baffa00 2026-10-13 02:31:26 +0300 Engine v1 + first run (20/20 vs pre-registered labels, 13/13 hold-out) + blind-reader prompt
+9770a45 2026-10-13 02:29:32 +0300 Pre-register manual labels (fixture + hold-out) before any engine code exists

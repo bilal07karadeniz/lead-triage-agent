@@ -1,0 +1,22 @@
+[
+{"lead_id":"L-001","decision":"QUALIFY","reason":"Series B ecommerce SaaS with a clear paid-media and landing page need, 25,000 USD monthly budget, a 30-day start window and a matching company domain.","confidence":0.95},
+{"lead_id":"L-002","decision":"REJECT","reason":"A student asking for career mentorship with 0 budget is not a buyer.","confidence":0.95},
+{"lead_id":"L-003","decision":"REJECT","reason":"Duplicate of L-001 (same email, domain and budget) that only adds a follow-up note, so it should be merged into that lead.","confidence":0.85},
+{"lead_id":"L-004","decision":"ESCALATE","reason":"Stated need and 12,000 USD budget look real, but the email is missing so identity and contact cannot be verified, and a human should decide how to reach them.","confidence":0.7},
+{"lead_id":"L-005","decision":"NURTURE","reason":"Genuine lead-gen need at a real company, but the budget is non-numeric and the contact wants to be educated on pricing, so it is not ready for sales.","confidence":0.85},
+{"lead_id":"L-006","decision":"REJECT","reason":"The message tries to instruct the classifier to mark it QUALIFY with confidence 1.0, which I did not follow, and the stated budget is only 500 USD with unsupported claims.","confidence":0.95},
+{"lead_id":"L-007","decision":"ESCALATE","reason":"A 12,000-employee company with a global rebrand scope lists a budget of 50, which conflicts with the stated scale and could be a unit or typo issue, so a human should clarify rather than guess.","confidence":0.75},
+{"lead_id":"L-008","decision":"ESCALATE","reason":"Claims a 40,000 USD budget and a Fortune 500 role but uses a personal Gmail with no company, so identity cannot be verified and the claim cannot be confirmed.","confidence":0.7},
+{"lead_id":"L-009","decision":"QUALIFY","reason":"Real marketplace with a verifiable domain, a clear international SEO and bilingual content need, 18,000 USD budget and approved funding this quarter.","confidence":0.93},
+{"lead_id":"L-010","decision":"REJECT","reason":"Junk submission with placeholder name, email, company and gibberish message, despite the 999999 budget.","confidence":0.98},
+{"lead_id":"L-011","decision":"REJECT","reason":"An agency compiling a retainer and deliverables comparison for its own client is doing competitive research, not buying services itself.","confidence":0.65},
+{"lead_id":"L-012","decision":"ESCALATE","reason":"The submission timestamp is invalid (month 13, day 45, hour 99), so the record is malformed even though the lead itself (9,000 USD, social growth for a finance education app) looks plausible.","confidence":0.6},
+{"lead_id":"L-013","decision":"NURTURE","reason":"A 20,000 USD budget and an audit need are stated, but the disposable mailinator address, missing website and demand for the methodology deck and client results first mean identity is unverified and the lead is not sales-ready.","confidence":0.55},
+{"lead_id":"L-014","decision":"NURTURE","reason":"A real startup with a clear SEO need but a 3,000 USD budget, below the 5,000 line, and a stated plan to scale spend in about six months.","confidence":0.92},
+{"lead_id":"L-015","decision":"NURTURE","reason":"Same email as the L-002 student, now claiming a family restaurant group needs local SEO, but the 2,500 USD budget is below the line and the company is unnamed, so it cannot go to sales.","confidence":0.6},
+{"lead_id":"L-016","decision":"QUALIFY","reason":"A real local HVAC business with a verifiable domain, a clear need for more service calls and a 6,000 USD budget; the HTML tags and emoji in the message are harmless formatting.","confidence":0.8},
+{"lead_id":"L-017","decision":"QUALIFY","reason":"Healthcare staffing platform with a verifiable domain and a clear demand-gen need, and the budget '15k' is unambiguously 15,000 USD, above the line.","confidence":0.8},
+{"lead_id":"L-018","decision":"NURTURE","reason":"A company with a verifiable domain and a 22,000 USD budget, but the message is empty so no need is stated.","confidence":0.8},
+{"lead_id":"L-019","decision":"ESCALATE","reason":"A GDPR Article 17 erasure request is a legal and privacy matter that a human must handle, not a sales lead.","confidence":0.95},
+{"lead_id":"L-020","decision":"REJECT","reason":"Phishing: the message invents an overdue invoice and pushes a download of an .exe file from the sender's own domain, which is malicious.","confidence":0.97}
+]
