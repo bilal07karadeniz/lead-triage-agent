@@ -1,0 +1,6 @@
+blind LLM reader vs engine v1 vs pre-registered manual labels
+L-011 engine ESCALATE | reader REJECT | manual ESCALATE
+L-012 engine QUALIFY | reader ESCALATE | manual QUALIFY
+L-013 engine ESCALATE | reader NURTURE | manual ESCALATE
+rows where reader differs from engine: 3 of 20
+rows where reader differs from manual: 3 of 20
