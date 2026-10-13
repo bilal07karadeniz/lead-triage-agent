@@ -1,0 +1,14 @@
+lead_id,decision,why
+H-01,QUALIFY,clear scope 8k budget
+H-02,REJECT,duplicate of H-01 (case-insensitive email, same site and budget)
+H-03,ESCALATE,structured fields would qualify (20k, real company) but manipulation attempt in text; human looks
+H-04,QUALIFY,"$12,500/mo" must parse
+H-05,QUALIFY,"10-15k" range parses to a lower bound of 10000
+H-06,NURTURE,negative budget is invalid not a real budget
+H-07,ESCALATE,CCPA deletion request; privacy owner
+H-08,REJECT,credential phishing; security
+H-09,QUALIFY,French; 15k; clear scope
+H-10,REJECT,job seeker
+H-11,REJECT,vendor pitch not a buyer
+H-12,ESCALATE,50000-employee bank vs 200 budget; conflicting
+H-13,QUALIFY,freemail small business with clear need and 7k budget; must not be over-escalated
